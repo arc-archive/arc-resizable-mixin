@@ -1,0 +1,106 @@
+import './x-resizer-parent.js';
+import './x-resizable.js';
+
+import { LitElement, html } from 'lit-element';
+import { ArcResizableMixin } from '../arc-resizable-mixin.js';
+
+class XResizerParentFiltered extends ArcResizableMixin(LitElement) {
+  static get properties() {
+    return {
+      active: { type: Object }
+    };
+  }
+
+  render() {
+    return html`<p>x-resizer-parent-filtered</p>`;
+  }
+
+  resizerShouldNotify(el) {
+    return (el === this.active);
+  }
+}
+window.customElements.define('x-resizer-parent-filtered', XResizerParentFiltered);
+
+class XResizableInShadow extends LitElement {
+  render() {
+    return html`<div>
+      <x-resizable id="resizable"></x-resizable>
+    </div>`;
+  }
+}
+window.customElements.define('x-resizable-in-shadow', XResizableInShadow);
+
+class TestElement extends LitElement {
+  render() {
+    return html`
+    <!-- Normal resizable parent with child resizables -->
+    <x-resizer-parent id="parent">
+      <x-resizable id="child1a"></x-resizable>
+      <div>
+        <x-resizable id="child1b"></x-resizable>
+      </div>
+      <x-resizable-in-shadow id="shadow1c"></x-resizable-in-shadow>
+      <div>
+        <x-resizable-in-shadow id="shadow1d"></x-resizable-in-shadow>
+      </div>
+    </x-resizer-parent>
+    <!-- Resizable parent using resizerShouldNotify, with child resizables -->
+    <x-resizer-parent-filtered id="parentFiltered">
+      <x-resizable id="child2a"></x-resizable>
+      <div>
+        <x-resizable id="child2b"></x-resizable>
+      </div>
+      <x-resizable-in-shadow id="shadow2c"></x-resizable-in-shadow>
+      <div>
+        <x-resizable-in-shadow id="shadow2d"></x-resizable-in-shadow>
+      </div>
+    </x-resizer-parent-filtered>`;
+  }
+}
+window.customElements.define('test-element', TestElement);
+
+const ObserveArcResizeMixin = (superClass) => class extends superClass {
+  static get properties() {
+    return {
+      ironResizeCount: { type: Number }
+    };
+  }
+
+  constructor() {
+    super();
+    this.ironResizeCount = 0;
+    this._incrementIronResizeCount = this._incrementIronResizeCount.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('iron-resize', this._incrementIronResizeCount);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('iron-resize', this._incrementIronResizeCount);
+  }
+
+  _incrementIronResizeCount() {
+    this.ironResizeCount++;
+  }
+};
+
+class XShadowResizable extends ObserveArcResizeMixin(ArcResizableMixin(LitElement)) {
+  render() {
+    return html`<div>Shadow count: ${this.ironResizeCount}</div>`;
+  }
+}
+window.customElements.define('x-shadow-resizable', XShadowResizable);
+
+class XLightResizable extends ObserveArcResizeMixin(ArcResizableMixin(LitElement)) {
+  render() {
+    return html`
+    Light count: ${this.ironResizeCount}
+    <x-shadow-resizable id="childResizable1"></x-shadow-resizable>
+    <x-shadow-resizable id="childResizable2"></x-shadow-resizable>
+    `;
+  }
+}
+window.customElements.define('x-light-resizable', XLightResizable);
