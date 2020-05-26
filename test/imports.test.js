@@ -8,8 +8,8 @@ const resizable = document.createElement('x-resizable');
 resizer.appendChild(resizable);
 document.body.appendChild(resizer);
 
-describe('imports order', function() {
-  it('resizable children and parent updated', function() {
+describe('imports order', () => {
+  it('resizable children and parent updated', () => {
     const parent = document.querySelector('x-resizer-parent');
     const child = parent.firstElementChild;
     assert.deepEqual(

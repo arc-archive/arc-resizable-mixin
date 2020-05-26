@@ -2,15 +2,15 @@ import {fixture, assert, nextFrame} from '@open-wc/testing';
 import sinon from 'sinon/pkg/sinon-esm.js';
 import './test-elements.js';
 
-describe('ArcResizableMixin - Basics', function() {
+describe('ArcResizableMixin - Basics', () => {
   let pendingNotifications;
 
   async function basicFixture() {
-    return (await fixture('<test-element></test-element>'));
+    return (fixture('<test-element></test-element>'));
   }
 
   function ListenForResize(el, expectsResize) {
-    const listener = function(/* event */) {
+    const listener = () => {
       // const target = event.path ? event.path[0] : event.target;
       pendingNotifications--;
     };
@@ -21,14 +21,14 @@ describe('ArcResizableMixin - Basics', function() {
     el.addEventListener('iron-resize', listener);
     return {
       el,
-      remove: function() {
+      remove: () => {
         el.removeEventListener('iron-resize', listener);
       }
     };
   }
 
   function RemoveListeners(listeners) {
-    listeners.forEach(function(listener) {
+    listeners.forEach((listener) => {
       listener.remove();
     });
   }
@@ -46,8 +46,8 @@ describe('ArcResizableMixin - Basics', function() {
     pendingNotifications = 0;
   });
 
-  describe('x-resizer-parent', function() {
-    it('notify resizables from window', function() {
+  describe('x-resizer-parent', () => {
+    it('notify resizables from window', () => {
       const listeners = [
         ListenForResize($(testEl, '#parent')),
         ListenForResize($(testEl, '#child1a')),
@@ -60,7 +60,7 @@ describe('ArcResizableMixin - Basics', function() {
       RemoveListeners(listeners);
     });
 
-    it('notify resizables from parent', function() {
+    it('notify resizables from parent', () => {
       const listeners = [
         ListenForResize($(testEl, '#parent')),
         ListenForResize($(testEl, '#child1a')),
@@ -97,7 +97,7 @@ describe('ArcResizableMixin - Basics', function() {
       assert.equal(shadow1bResizable.notifyResize.callCount, 1);
     });
 
-    it('detach parent then notify window', function(done) {
+    it('detach parent then notify window', (done) => {
       const listeners = [
         ListenForResize($(testEl, '#parent')),
         ListenForResize($(testEl, '#child1a')),
@@ -108,7 +108,7 @@ describe('ArcResizableMixin - Basics', function() {
       const el = $(testEl, '#parent');
       el.parentNode.removeChild(el);
       pendingNotifications = 0;
-      setTimeout(function() {
+      setTimeout(() => {
         try {
           window.dispatchEvent(new CustomEvent('resize', {bubbles: false}));
           assert.equal(pendingNotifications, 0);
@@ -122,8 +122,8 @@ describe('ArcResizableMixin - Basics', function() {
     });
   });
 
-  describe('x-resizer-parent-filtered', function() {
-    it('notify resizables from window', function() {
+  describe('x-resizer-parent-filtered', () => {
+    it('notify resizables from window', () => {
       const parentFiltered = $(testEl, '#parentFiltered');
       const child2a = $(testEl, '#child2a');
       const listeners = [
@@ -139,7 +139,7 @@ describe('ArcResizableMixin - Basics', function() {
       RemoveListeners(listeners);
     });
 
-    it('notify resizables from parent', function() {
+    it('notify resizables from parent', () => {
       const parentFiltered = $(testEl, '#parentFiltered');
       const child2a = $(testEl, '#child2a');
       const listeners = [
@@ -155,7 +155,7 @@ describe('ArcResizableMixin - Basics', function() {
       RemoveListeners(listeners);
     });
 
-    it('detach resizables then notify parent', function() {
+    it('detach resizables then notify parent', () => {
       const parentFiltered = $(testEl, '#parentFiltered');
       const child2a = $(testEl, '#child2a');
       const shadow2dResizable = $($(testEl, '#shadow2d'), '#resizable');

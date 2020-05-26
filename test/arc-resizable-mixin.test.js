@@ -4,20 +4,20 @@ import '../arc-resizable-mixin.js';
 import './test-elements.js';
 
 
-describe('ArcResizableMixin', function() {
+describe('ArcResizableMixin', () => {
   let resizable;
 
   async function basicFixture() {
-    return (await fixture('<x-light-resizable></x-light-resizable>'));
+    return (fixture('<x-light-resizable></x-light-resizable>'));
   }
 
-  describe('events across shadow boundaries', function() {
+  describe('events across shadow boundaries', () => {
     beforeEach(async () => {
       resizable = await basicFixture();
       await nextFrame();
     });
 
-    describe('ancestor\'s iron-resize', function() {
+    describe('ancestor\'s iron-resize', () => {
       it('only fires once for a notifying shadow descendent', async () => {
         const initialCount = resizable.ironResizeCount;
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
@@ -25,15 +25,15 @@ describe('ArcResizableMixin', function() {
         assert.equal(resizable.ironResizeCount - initialCount, 1);
       });
 
-      it('only fires once when notifying descendent observables', function() {
+      it('only fires once when notifying descendent observables', () => {
         const initialCount = resizable.ironResizeCount;
         resizable.notifyResize();
         assert.equal(resizable.ironResizeCount - initialCount, 1);
       });
     });
 
-    describe('descendant\'s iron-resize', function() {
-      it('only fires once for a notifying shadow root', function() {
+    describe('descendant\'s iron-resize', () => {
+      it('only fires once for a notifying shadow root', () => {
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
         const r2 = resizable.shadowRoot.querySelector('#childResizable2');
         const childResizable1InitialCount = r1.ironResizeCount;
@@ -43,7 +43,7 @@ describe('ArcResizableMixin', function() {
         assert.equal(r2.ironResizeCount - childResizable2InitialCount, 1);
       });
 
-      it('only fires once for a notifying descendent observable', function() {
+      it('only fires once for a notifying descendent observable', () => {
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
         const initialCount = r1.ironResizeCount;
         r1.notifyResize();
@@ -51,7 +51,7 @@ describe('ArcResizableMixin', function() {
       });
     });
 
-    describe('window\'s resize', function() {
+    describe('window\'s resize', () => {
       it('causes all iron-resize events to fire once', async () => {
         const rootInitialCount = resizable.ironResizeCount;
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');

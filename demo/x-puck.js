@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import { ArcResizableMixin } from '../arc-resizable-mixin.js';
+import { ArcResizableMixin } from '../index.js';
 
 class Xpuck extends ArcResizableMixin(LitElement) {
   static get styles() {
@@ -44,9 +44,9 @@ class Xpuck extends ArcResizableMixin(LitElement) {
   }
 
   _onIronResize() {
-    const x = this.x = Math.floor(this.parent.offsetWidth / 3);
-    const y = this.y = Math.floor(this.parent.offsetHeight / 3);
-    this.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+    this.x = Math.floor(this.parent.offsetWidth / 3);
+    this.y = Math.floor(this.parent.offsetHeight / 3);
+    this.style.transform = `translate3d(${this.x}px, ${this.y}px, 0px)`;
   }
 
   render() {

@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import { ArcResizableMixin } from '../arc-resizable-mixin.js';
+import { ArcResizableMixin } from '../index.js';
 import './x-puck.js';
 
 class Xapp extends ArcResizableMixin(LitElement) {
