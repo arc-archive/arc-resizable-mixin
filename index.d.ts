@@ -1,1 +1,1 @@
-export { ArcResizableMixin } from './src/ArcResizableMixin';
+export { ArcResizableMixin, ArcResizableMixinConstructor } from './src/ArcResizableMixin';

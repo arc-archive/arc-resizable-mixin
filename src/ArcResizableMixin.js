@@ -134,7 +134,7 @@ const mxFunction = base => {
     /**
      * Subscribe this element to listen to iron-resize events on the given target.
      *
-     * Preferred over target.listen because the property renamer does not
+     * Preferred over target.listen because the property "renamer" does not
      * understand to rename when the target is not specifically "this"
      *
      * @param {HTMLElement} target Element to listen to for iron-resize events.
@@ -147,7 +147,7 @@ const mxFunction = base => {
      * Unsubscribe this element from listening to to iron-resize events on the
      * given target.
      *
-     * Preferred over target.unlisten because the property renamer does not
+     * Preferred over target.unlisten because the property "renamer" does not
      * understand to rename when the target is not specifically "this"
      *
      * @param {HTMLElement} target Element to listen to for iron-resize events.
