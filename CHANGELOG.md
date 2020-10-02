@@ -42,3 +42,14 @@
  [11530c0](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/11530c022697efba3d9820dc885b63b58773bff0) by Pawel
 
 
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/advanced-rest-client/arc-resizable-mixin/compare/1.1.0...1.1.2) (2020-10-02)
+
+### Update
+
+* updating types [7018b76](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/7018b764e04e7bb5aacc51fd6bc1b4903c3c7ced) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [1694fa1](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/1694fa10f03cce2b378d9cc611a9b777986c1dd8) by Ci agent
+* upgrading dependencies [9b72e37](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/9b72e37e25d421ecad86168580fdb9d559e4d449) by Pawel Psztyc
+* [ci skip] automated merge master->stage. syncing main branches [7180b81](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/7180b81a7985cce983a3494f7b3f1122ed1ad92a) by Ci agent
+
+
