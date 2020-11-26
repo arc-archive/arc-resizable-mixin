@@ -53,3 +53,14 @@
 * [ci skip] automated merge master->stage. syncing main branches [7180b81](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/7180b81a7985cce983a3494f7b3f1122ed1ad92a) by Ci agent
 
 
+<a name="1.2.0"></a>
+## [1.2.0](https://github.com/advanced-rest-client/arc-resizable-mixin/compare/1.1.1...1.2.0) (2020-11-26)
+
+### Update
+
+* upgrading the tests runner [7ca8d07](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/7ca8d075f4fee0f96dcf31a2651177bdb053b31c) by Pawel Psztyc
+* [ci skip] automated merge master->stage. syncing main branches [3fe2c4f](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/3fe2c4f66fabb0e93759ba8b89446f32d8d64a97) by Ci agent
+* updating types [7018b76](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/7018b764e04e7bb5aacc51fd6bc1b4903c3c7ced) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [1694fa1](https://github.com/advanced-rest-client/arc-resizable-mixin/commit/1694fa10f03cce2b378d9cc611a9b777986c1dd8) by Ci agent
+
+
