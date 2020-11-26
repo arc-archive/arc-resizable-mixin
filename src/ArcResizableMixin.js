@@ -6,6 +6,10 @@ const ORPHANS = new Set();
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 
+export const resizeNotificationEventType = 'requestresizenotifications';
+export const resizeEventType = 'resize';
+export const legacyResizeEventType = 'iron-resize';
+
 /**
  * @param {typeof HTMLElement} base
  */
@@ -45,7 +49,7 @@ const mxFunction = base => {
       this._onIronRequestResizeNotifications = this._onIronRequestResizeNotifications.bind(this);
       this.notifyResize = this.notifyResize.bind(this);
       this._onDescendantIronResize = this._onDescendantIronResize.bind(this);
-      this.addEventListener('iron-request-resize-notifications', this._onIronRequestResizeNotifications, true);
+      this.addEventListener(resizeNotificationEventType, this._onIronRequestResizeNotifications, true);
     }
 
     connectedCallback() {
@@ -67,7 +71,7 @@ const mxFunction = base => {
         super.disconnectedCallback();
       }
       this.isAttached = false;
-      // this.removeEventListener('iron-request-resize-notifications', this._onIronRequestResizeNotifications);
+      // this.removeEventListener(resizeNotificationEventType, this._onIronRequestResizeNotifications);
       if (this._parentResizable) {
         // @ts-ignore
         this._parentResizable.stopResizeNotificationsFor(this);
@@ -132,28 +136,30 @@ const mxFunction = base => {
     }
 
     /**
-     * Subscribe this element to listen to iron-resize events on the given target.
+     * Subscribe this element to listen to `resize` events on the given target.
      *
      * Preferred over target.listen because the property "renamer" does not
      * understand to rename when the target is not specifically "this"
      *
-     * @param {HTMLElement} target Element to listen to for iron-resize events.
+     * @param {HTMLElement} target Element to listen to for `resize` events.
      */
     _subscribeIronResize(target) {
-      target.addEventListener('iron-resize', this._onDescendantIronResize);
+      target.addEventListener(legacyResizeEventType, this._onDescendantIronResize);
+      target.addEventListener(resizeEventType, this._onDescendantIronResize);
     }
 
     /**
-     * Unsubscribe this element from listening to to iron-resize events on the
+     * Unsubscribe this element from listening to to `resize` events on the
      * given target.
      *
      * Preferred over target.unlisten because the property "renamer" does not
      * understand to rename when the target is not specifically "this"
      *
-     * @param {HTMLElement} target Element to listen to for iron-resize events.
+     * @param {HTMLElement} target Element to listen to for `resize` events.
      */
     _unsubscribeIronResize(target) {
-      target.removeEventListener('iron-resize', this._onDescendantIronResize);
+      target.removeEventListener(legacyResizeEventType, this._onDescendantIronResize);
+      target.removeEventListener(resizeEventType, this._onDescendantIronResize);
     }
 
     /**
@@ -178,7 +184,7 @@ const mxFunction = base => {
     }
 
     _fireResize() {
-      this.dispatchEvent(new CustomEvent('iron-resize'));
+      this.dispatchEvent(new CustomEvent(resizeEventType));
     }
 
     _onIronRequestResizeNotifications(e) {
@@ -260,7 +266,7 @@ const mxFunction = base => {
 
     _findParent() {
       this.assignParentResizable(null);
-      this.dispatchEvent(new CustomEvent('iron-request-resize-notifications', {
+      this.dispatchEvent(new CustomEvent(resizeNotificationEventType, {
         bubbles: true,
         cancelable: true,
         composed: true
@@ -286,13 +292,10 @@ const mxFunction = base => {
  * that need to be notified when they are resized or un-hidden by their parents
  * in order to take action on their new measurements).
  *
- * Elements that perform measurement should add the `ArcResizableMixin`
- * mixin to their element definition and listen for the `iron-resize` event on
- * themselves. This event will be fired when they become showing after having
- * been hidden, when they are resized explicitly by another resizable, or when
- * the window has been resized.
+ * Elements that perform measurement should add the `ArcResizableMixin` mixin to their element definition and listen for the `resize` event on themselves. 
+ * This event will be fired when they become showing after having been hidden, when they are resized explicitly by another resizable, or when the window has been resized.
  *
- * Note, the `iron-resize` event is non-bubbling.
+ * Note, the `resize` event is non-bubbling.
  *
  * ## Usage
  *

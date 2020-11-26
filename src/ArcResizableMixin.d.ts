@@ -1,8 +1,15 @@
+export declare const resizeNotificationEventType: string;
+export declare const resizeEventType: string;
+export declare const legacyResizeEventType: string;
+
 declare function ArcResizableMixin<T extends new (...args: any[]) => {}>(base: T): T & ArcResizableMixinConstructor;
 interface ArcResizableMixinConstructor {
   new(...args: any[]): ArcResizableMixin;
 }
 
+/**
+ * @fires resize Dispatched when the element should re-layout itself.
+ */
 interface ArcResizableMixin {
   readonly _parentResizable: HTMLElement;
   _notifyingDescendant: Boolean;
@@ -27,22 +34,22 @@ interface ArcResizableMixin {
    */
   stopResizeNotificationsFor(target: HTMLElement): void;
   /**
-   * Subscribe this element to listen to iron-resize events on the given target.
+   * Subscribe this element to listen to `resize` events on the given target.
    *
    * Preferred over target.listen because the property renamer does not
    * understand to rename when the target is not specifically "this"
    *
-   * @param target Element to listen to for iron-resize events.
+   * @param target Element to listen to for `resize` events.
    */
   _subscribeIronResize(target: HTMLElement): void;
   /**
-   * Unsubscribe this element from listening to to iron-resize events on the
+   * Unsubscribe this element from listening to to `resize` events on the
    * given target.
    *
    * Preferred over target.unlisten because the property renamer does not
    * understand to rename when the target is not specifically "this"
    *
-   * @param {HTMLElement} target Element to listen to for iron-resize events.
+   * @param {HTMLElement} target Element to listen to for `resize` events.
    */
   _unsubscribeIronResize(target: HTMLElement): void;
   /**

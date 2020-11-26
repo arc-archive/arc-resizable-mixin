@@ -1,3 +1,5 @@
+/* eslint-disable wc/no-invalid-element-name */
+/* eslint-disable max-classes-per-file */
 import './x-resizer-parent.js';
 import './x-resizable.js';
 
@@ -74,12 +76,12 @@ const ObserveArcResizeMixin = (superClass) => class extends superClass {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener('iron-resize', this._incrementIronResizeCount);
+    this.addEventListener('resize', this._incrementIronResizeCount);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener('iron-resize', this._incrementIronResizeCount);
+    this.removeEventListener('resize', this._incrementIronResizeCount);
   }
 
   _incrementIronResizeCount() {

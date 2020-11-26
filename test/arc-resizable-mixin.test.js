@@ -17,7 +17,7 @@ describe('ArcResizableMixin', () => {
       await nextFrame();
     });
 
-    describe('ancestor\'s iron-resize', () => {
+    describe('ancestor\'s resize', () => {
       it('only fires once for a notifying shadow descendent', async () => {
         const initialCount = resizable.ironResizeCount;
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
@@ -32,7 +32,7 @@ describe('ArcResizableMixin', () => {
       });
     });
 
-    describe('descendant\'s iron-resize', () => {
+    describe('descendant\'s "resize"', () => {
       it('only fires once for a notifying shadow root', () => {
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
         const r2 = resizable.shadowRoot.querySelector('#childResizable2');
@@ -52,7 +52,7 @@ describe('ArcResizableMixin', () => {
     });
 
     describe('window\'s resize', () => {
-      it('causes all iron-resize events to fire once', async () => {
+      it('causes all "resize" events to fire once', async () => {
         const rootInitialCount = resizable.ironResizeCount;
         const r1 = resizable.shadowRoot.querySelector('#childResizable1');
         const r2 = resizable.shadowRoot.querySelector('#childResizable2');

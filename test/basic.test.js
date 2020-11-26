@@ -18,11 +18,11 @@ describe('ArcResizableMixin - Basics', () => {
     if (expectsResize !== false) {
       pendingNotifications++;
     }
-    el.addEventListener('iron-resize', listener);
+    el.addEventListener('resize', listener);
     return {
       el,
       remove: () => {
-        el.removeEventListener('iron-resize', listener);
+        el.removeEventListener('resize', listener);
       }
     };
   }
