@@ -1,6 +1,10 @@
 
 # ArcResizableMixin
 
+[![Published on NPM](https://img.shields.io/npm/v/@advanced-rest-client/arc-resizable-mixin.svg)](https://www.npmjs.com/package/@advanced-rest-client/arc-resizable-mixin)
+
+[![Tests and publishing](https://github.com/advanced-rest-client/arc-resizable-mixin/actions/workflows/deployment.yml/badge.svg)](https://github.com/advanced-rest-client/arc-resizable-mixin/actions/workflows/deployment.yml)
+
 This mixin is a port of [iron-resizable-behavior](https://github.com/PolymerElements/iron-resizable-behavior) that works with any JavaScript class.
 
 `ArcResizableMixin` is a mixin that can be used in web components to coordinate the flow of resize events between "resizers" (elements that control the size or hidden state of their children) and "resizables" (elements that need to be notified when they are resized or un-hidden by their parents in order to take action on their new measurements).
