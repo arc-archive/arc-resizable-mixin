@@ -1,5 +1,4 @@
 coverage/
 test/
-CONTRIBUTING.md
 demo/
-polymer.json
+tsconfig.json
