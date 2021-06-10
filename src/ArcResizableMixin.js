@@ -199,7 +199,9 @@ const mxFunction = base => {
       if (target === this) {
         return;
       }
-      target.assignParentResizable(this);
+      if(target.assignParentResizable) {
+        target.assignParentResizable(this);
+      }
       this._notifyDescendant(target);
       e.stopPropagation();
     }
