@@ -1,5 +1,9 @@
 
-# ArcResizableMixin
+# DEPRECATED
+
+Use the `@anypoint-web-components/awc` module instead.
+
+-----
 
 [![Published on NPM](https://img.shields.io/npm/v/@advanced-rest-client/arc-resizable-mixin.svg)](https://www.npmjs.com/package/@advanced-rest-client/arc-resizable-mixin)
 

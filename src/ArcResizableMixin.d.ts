@@ -9,6 +9,7 @@ interface ArcResizableMixinConstructor {
 
 /**
  * @fires resize Dispatched when the element should re-layout itself.
+ * @deprecated. Use the `@anypoint-web-components/awc` module instead.
  */
 interface ArcResizableMixin {
   readonly _parentResizable: HTMLElement;
